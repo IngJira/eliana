@@ -122,8 +122,7 @@ class _SimpleRecorderState extends State<SimpleRecorder> {
       audioSource: theSource,
     )
         .then((value) {
-      setState(() {
-      });
+      setState(() {});
     });
   }
 
