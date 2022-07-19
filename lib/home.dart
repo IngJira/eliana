@@ -30,11 +30,9 @@ class SimpleRecorder extends StatefulWidget {
   _SimpleRecorderState createState() => _SimpleRecorderState();
 }
 
-dynamic time;
-
 class _SimpleRecorderState extends State<SimpleRecorder> {
   Codec _codec = Codec.aacMP4;
-  String _mPath = '${time}.mp4';
+  String _mPath = 'tau_file.mp4';
   FlutterSoundPlayer? _mPlayer = FlutterSoundPlayer();
   FlutterSoundRecorder? _mRecorder = FlutterSoundRecorder();
   bool _mPlayerIsInited = false;
@@ -115,6 +113,8 @@ class _SimpleRecorderState extends State<SimpleRecorder> {
   // ----------------------  Here is the code for recording and playback -------
 
   void record() {
+    dynamic time = new DateTime.now().toString().substring(0,19).replaceAll(new RegExp(r'[^0-9]'),'');
+    dynamic _mPath = '${time}.mp4';
     _mRecorder!
         .startRecorder(
       toFile: _mPath,
@@ -281,8 +281,6 @@ class _SimpleRecorderState extends State<SimpleRecorder> {
   }
 
   Future<String?> _upload() async {
-    dynamic time = new DateTime.now().toString().substring(0,19).replaceAll(new RegExp(r'[^0-9]'),'');
-    dynamic _mPath = '${time}.mp4';
     String? result;
 
     if (result == null) {
